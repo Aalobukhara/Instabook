@@ -10,8 +10,8 @@ import random
 # Create your views here.
 @login_required(login_url ='signin')
 def index(request):
-    user_object = User.objects.get(username = request.user.username)
-    user_profile = Profile.objects.get(user = user_object)
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
     
     user_following_list = []
     feed =[]
