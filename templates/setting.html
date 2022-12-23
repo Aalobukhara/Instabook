@@ -13,11 +13,71 @@
     <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
 
+
+    <header>
+        <div class="header_inner">
+                <div class="left-side">
+                        {% comment %} <input type="text" name="username" class="border-2 border-rose-500 srchbox " placeholder="Search here.."> &nbsp;&nbsp;&nbsp; {% endcomment %}
+                        <a href="/" class="font-bold bg-pink-600 items-center text-white p-3 rounded max-h-10 mr-2 px-4 py-2 homeb">Home</a>
+                </div>
+
+            <div class="right-side lg:pr-4">
+                 <!-- upload -->
+                <a href="#" class=" flex font-bold bg-pink-600 text-white inline-block items-center max-h-10 mr-2 px-4 py-2 rounded shadow createpost">+ </a>
+                {% comment %} <a href="#"  class=" flex font-bold hidden bg-pink-600 text-white inline-block items-center lg:block max-h-10 mr-4 px-4 py-2 rounded shadow createpost">Create Post </a> {% endcomment %}
+                 <!-- upload dropdown box -->
+                <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small" class="header_dropdown">
+
+                    <!-- notivication header -->
+                    <div class="px-4 py-3 -mx-5 -mt-4 mb-5 border-b">
+                        <h3><b>Create Post</b></h3>
+                    </div>
+
+                    <!-- notification contents -->
+                    <div class="flex justify-center flex-center text-center">
+
+                        <div class="flex flex-col choose-upload text-center">
+                            <form action = "upload" method = "POST" enctype ="multipart/form-data">
+                                {% csrf_token %}
+                                <p class="my-3 leading-6">Select pictures to upload </p>
+                                <div >
+                                    <input type="file" class="bg-gray-100" name = "image_upload">
+                                    <br>
+                                    <textarea rows="1" class="shadow-none bg-gray-100" name = "caption" placeholder = "captions..."></textarea>
+                                
+                                    <br><hr><br>
+                                
+                                    <button class="button soft-warning small" type = "submit">Upload</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- profile -->
+
+                <a href="#">
+                    <img src="{{user_profile.profileimg.url}}" class="header-avatar" alt="">
+                </a>
+                <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                    <ul>
+                        <li><a href="/profile/{{user.username}}"> Profile </a> </li>
+                        <li><a href="/settings"> Account Settings </a> </li>
+                        <li><a href="logout"> Log Out</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
 
 
 
